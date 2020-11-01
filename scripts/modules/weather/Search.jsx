@@ -8,7 +8,6 @@ import { SearchIcon } from 'components/icons';
 
 const useStyles = makeStyles(theme => ({
   form: {
-    marginTop: theme.spacing(4),
     marginBottom: theme.spacing(4)
   }
 }));

@@ -1,18 +1,22 @@
 import React from 'react';
 
-import { List, ListItemLink, Typography } from 'components/controls';
+import {
+  List,
+  ListItemLink,
+  ListSubheader,
+  ModuleTitle,
+  ModuleWrapper
+} from 'components/controls';
 
 const AboutPage = () => (
-  <>
-    <Typography component="h1" variant="h5">
-      My template
-    </Typography>
-    <List>
+  <ModuleWrapper>
+    <ModuleTitle name="About" />
+    <List subheader={<ListSubheader>Pages</ListSubheader>}>
       <ListItemLink to="/weather" primary="Weather Forecast" />
       <ListItemLink to="/todo" primary="Todo List" />
-      <ListItemLink to="/Expense" primary="My Expense" />
+      <ListItemLink to="/expense" primary="My Expense" />
     </List>
-  </>
+  </ModuleWrapper>
 );
 
 export default AboutPage;

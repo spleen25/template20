@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 
+import { useDarkTheme } from 'hooks';
+
 import Layout from 'components/layout';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from 'components/providers';
 import { BrowserRouter, Switch, Route, Redirect } from 'components/router';
-import { CssBaseline } from '@material-ui/core';
+import { CssBaseline } from 'decorators';
 
 import AboutPage from './about';
 import WeatherPage from './weather';
-import Page2 from './expense';
+import ExpensePage from './expense';
 import TodoList from './todoList';
 
 import '../../styles/index.less';
@@ -23,8 +25,8 @@ const routes = [
     component: WeatherPage
   },
   {
-    path: '/page2',
-    component: Page2
+    path: '/expense',
+    component: ExpensePage
   },
   {
     path: '/todo',
@@ -33,28 +35,18 @@ const routes = [
 ];
 
 const AppModules = () => {
-  const [theme, setTheme] = useState({
-    palette: {
-      type: 'light'
-    }
-  });
+  const [theme, toggleDarkTheme] = useDarkTheme();
 
-  const toggleDarkTheme = () => {
-    const newPaletteType = theme.palette.type === 'light' ? 'dark' : 'light';
-    setTheme({
-      palette: {
-        type: newPaletteType
-      }
-    });
-  };
-
-  const muiTheme = createMuiTheme(theme);
+  const themeConfig = createMuiTheme(theme);
 
   return (
     <BrowserRouter>
-      <MuiThemeProvider theme={muiTheme}>
+      <MuiThemeProvider theme={themeConfig}>
         <CssBaseline>
-          <Layout onToggleDark={toggleDarkTheme}>
+          <Layout
+            paletteType={themeConfig.palette.type}
+            onToggleDark={toggleDarkTheme}
+          >
             <Switch>
               {routes.map((route, i) => (
                 <Route key={i} {...route} />

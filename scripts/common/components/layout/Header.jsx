@@ -13,6 +13,7 @@ import {
 } from 'components/controls';
 import {
   Brightness4Icon,
+  Brightness7Icon,
   HomeIcon,
   InsertEmoticonIcon,
   MenuIcon
@@ -25,7 +26,6 @@ const useStyles = makeStyles(theme => ({
     paddingRight: 24
   },
   appBar: {
-    backgroundColor: 'indigo',
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -51,12 +51,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Header = ({ open, onDrawerOpen, onToggleDark }) => {
+const Header = ({ open, paletteType, onDrawerOpen, onToggleDark }) => {
   const classes = useStyles();
 
   return (
     <MuiAppBar
       position="absolute"
+      color="primary"
       className={clsx(classes.appBar, open && classes.appBarShift)}
     >
       <Toolbar className={classes.toolbar}>
@@ -80,7 +81,7 @@ const Header = ({ open, onDrawerOpen, onToggleDark }) => {
           TEMPLATE 20
         </Typography>
         <IconButton onClick={onToggleDark}>
-          <Brightness4Icon />
+          {paletteType === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
         </IconButton>
         <IconButton component={Link} to="/">
           <HomeIcon />
@@ -92,6 +93,7 @@ const Header = ({ open, onDrawerOpen, onToggleDark }) => {
 
 Header.propTypes = {
   open: PropTypes.bool.isRequired,
+  paletteType: PropTypes.string.isRequired,
   onDrawerOpen: PropTypes.func.isRequired,
   onToggleDark: PropTypes.func.isRequired
 };

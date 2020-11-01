@@ -1,3 +1,5 @@
 import useRouter from 'use-react-router';
 
-export { useRouter };
+import useDarkTheme from './useDarkTheme';
+
+export { useDarkTheme, useRouter };

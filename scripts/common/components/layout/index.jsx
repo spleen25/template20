@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Layout = ({ routes, onToggleDark, children }) => {
+const Layout = ({ paletteType, routes, onToggleDark, children }) => {
   const classes = useStyles();
 
   const {
@@ -52,6 +52,7 @@ const Layout = ({ routes, onToggleDark, children }) => {
     <div className={classes.root}>
       <Header
         open={open}
+        paletteType={paletteType}
         onDrawerOpen={onDrawerOpen}
         onToggleDark={onToggleDark}
       />
@@ -67,6 +68,7 @@ const Layout = ({ routes, onToggleDark, children }) => {
 };
 
 Layout.propTypes = {
+  paletteType: PropTypes.string.isRequired,
   routes: PropTypes.array,
   onToggleDark: PropTypes.func.isRequired,
   children: PropTypes.element
