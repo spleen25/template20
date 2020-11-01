@@ -22,6 +22,8 @@ import {
 
 import ErrorAlert from './ErrorAlert';
 import ListItemLink from './ListItemLink';
+import ModuleTitle from './ModuleTitle';
+import ModuleWrapper from './ModuleWrapper';
 
 export {
   AppBar,
@@ -38,6 +40,8 @@ export {
   ListItemText,
   ListSubheader,
   ListItemLink,
+  ModuleTitle,
+  ModuleWrapper,
   Toolbar,
   InputAdornment,
   Typography,

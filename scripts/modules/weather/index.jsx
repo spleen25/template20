@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 
 import axios from 'axios';
 
-import { Collapse, ErrorAlert } from 'components/controls';
+import {
+  Collapse,
+  ErrorAlert,
+  ModuleTitle,
+  ModuleWrapper
+} from 'components/controls';
 
-import WeatherWrapper from './Wrapper';
-import WeatherTitle from './Title';
 import SearchCity from './Search';
 import WeatherData from './WeatherData/index';
 
@@ -51,8 +54,8 @@ const WeatherPage = () => {
   };
 
   return (
-    <WeatherWrapper>
-      <WeatherTitle name="Weather Forecast" />
+    <ModuleWrapper>
+      <ModuleTitle name="Weather Forecast" />
       <SearchCity
         city={city}
         fetchData={fetchData}
@@ -62,7 +65,7 @@ const WeatherPage = () => {
         {weather && <WeatherData weather={weather} />}
         {error && <ErrorAlert message={error} />}
       </Collapse>
-    </WeatherWrapper>
+    </ModuleWrapper>
   );
 };
 

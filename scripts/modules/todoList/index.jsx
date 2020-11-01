@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { ModuleTitle, ModuleWrapper } from 'components/controls';
+
 import Todo from './Todo';
 import TodoForm from './TodoForm';
 
@@ -41,19 +43,21 @@ const TodoListPage = () => {
   };
 
   return (
-    <div className="todo-list">
-      <h1 className="title">Менеджер задач</h1>
-      {todos.map((todo, index) => (
-        <Todo
-          key={index}
-          index={index}
-          todo={todo}
-          completeTodo={completeTodo}
-          removeTodo={removeTodo}
-        />
-      ))}
-      <TodoForm addTodo={addTodo} />
-    </div>
+    <ModuleWrapper>
+      <ModuleTitle name="Todo List" />
+      <div className="todo-list">
+        {todos.map((todo, index) => (
+          <Todo
+            key={index}
+            index={index}
+            todo={todo}
+            completeTodo={completeTodo}
+            removeTodo={removeTodo}
+          />
+        ))}
+        <TodoForm addTodo={addTodo} />
+      </div>
+    </ModuleWrapper>
   );
 };
 

@@ -1,6 +1,7 @@
 import {
   BeachAccess as BeachAccessIcon,
   Brightness4 as Brightness4Icon,
+  Brightness7 as Brightness7Icon,
   FormatListNumbered as FormatListNumberedIcon,
   Home as HomeIcon,
   InsertEmoticon as InsertEmoticonIcon,
@@ -12,6 +13,7 @@ import {
 export {
   BeachAccessIcon,
   Brightness4Icon,
+  Brightness7Icon,
   FormatListNumberedIcon,
   HomeIcon,
   InsertEmoticonIcon,

@@ -1,7 +1,11 @@
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import { deepPurple, pink } from '@material-ui/core/colors';
 
-export default createMuiTheme({
+const themeDefault = {
   palette: {
-    type: 'light'
+    primary: pink,
+    secondary: deepPurple,
+    type: String(window.localStorage.getItem('paletteType') || 'dark')
   }
-});
+};
+
+export default themeDefault;

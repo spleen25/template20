@@ -14,7 +14,11 @@ export const mainListItems = (
       primary="Todo List"
       icon={<FormatListNumberedIcon />}
     />
-    <ListItemLink to="/page2" primary="Page 2" icon={<HourglassEmptyIcon />} />
+    <ListItemLink
+      to="/expense"
+      primary="My Expense"
+      icon={<HourglassEmptyIcon />}
+    />
   </List>
 );
 

@@ -1,3 +1,3 @@
-import { MuiThemeProvider } from '@material-ui/core';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 
-export { MuiThemeProvider };
+export { MuiThemeProvider, createMuiTheme };
