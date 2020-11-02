@@ -5,7 +5,7 @@ import { useDarkTheme } from 'hooks';
 
 import Layout from 'components/layout';
 import { MuiThemeProvider, createMuiTheme } from 'components/providers';
-import { BrowserRouter, Switch, Route, Redirect } from 'components/router';
+import { HashRouter, Switch, Route, Redirect } from 'components/router';
 import { CssBaseline } from 'decorators';
 
 import AboutPage from './about';
@@ -40,7 +40,7 @@ const AppModules = () => {
   const themeConfig = createMuiTheme(theme);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <MuiThemeProvider theme={themeConfig}>
         <CssBaseline>
           <Layout
@@ -56,7 +56,7 @@ const AppModules = () => {
           </Layout>
         </CssBaseline>
       </MuiThemeProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

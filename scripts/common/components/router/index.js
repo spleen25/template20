@@ -1,5 +1,6 @@
 import {
   BrowserRouter,
+  HashRouter,
   Route,
   Redirect,
   NavLink,
@@ -7,4 +8,4 @@ import {
   Link
 } from 'react-router-dom';
 
-export { BrowserRouter, Route, Redirect, Link, NavLink, Switch };
+export { BrowserRouter, HashRouter, Route, Redirect, Link, NavLink, Switch };
