@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import * as PropTypes from 'prop-types';
 
 import { Container } from '@material-ui/core';
 
-import { useRouter } from 'hooks';
 import { makeStyles } from 'decorators';
-
-import { getRouteTitle } from 'utils/router';
 
 import Header from './Header';
 import Drawer from './Drawer';
@@ -27,16 +24,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Layout = ({ paletteType, routes, onToggleDark, children }) => {
+const Layout = ({ paletteType, onToggleDark, children }) => {
   const classes = useStyles();
-
-  const {
-    location: { pathname }
-  } = useRouter();
-
-  useEffect(() => {
-    document.title = getRouteTitle(document.title, pathname, routes);
-  }, [pathname]);
 
   const [open, setOpen] = useState(false);
 
@@ -69,7 +58,6 @@ const Layout = ({ paletteType, routes, onToggleDark, children }) => {
 
 Layout.propTypes = {
   paletteType: PropTypes.string.isRequired,
-  routes: PropTypes.array,
   onToggleDark: PropTypes.func.isRequired,
   children: PropTypes.element
 };

@@ -1,23 +1,18 @@
-const merge = require('webpack-merge');
+const webpack = require('webpack');
+const { merge } = require('webpack-merge');
 
+const paths = require('./paths');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
   mode: 'development',
-  devtool: 'cheap-module-source-map',
-  module: {
-    rules: [
-      {
-        test: /\.(css|less)(\?.+)?$/,
-        use: ['style-loader', 'css-loader', 'less-loader']
-      }
-    ]
-  },
+  devtool: 'eval-cheap-module-source-map',
   devServer: {
-    writeToDisk: true,
-    historyApiFallback: true
-    // hot: false,
-    // inline: false
+    historyApiFallback: true,
+    contentBase: paths.build,
+    compress: true,
+    hot: true,
+    port: 8080
   },
-  plugins: []
+  plugins: [new webpack.HotModuleReplacementPlugin()]
 });
