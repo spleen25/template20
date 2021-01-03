@@ -12,10 +12,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SearchCity = ({ city, fetchData, onCityChange }) => {
+const SearchCity = ({ city, execute, onCityChange }) => {
   const classes = useStyles();
   return (
-    <form className={classes.form} onSubmit={fetchData}>
+    <form className={classes.form}>
       <TextField
         placeholder="Enter city"
         variant="outlined"
@@ -29,13 +29,15 @@ const SearchCity = ({ city, fetchData, onCityChange }) => {
           )
         }}
       />
+
+      <button onClick={execute} type="button">123</button>
     </form>
   );
 };
 
 SearchCity.propTypes = {
   city: PropTypes.string.isRequired,
-  fetchData: PropTypes.func.isRequired,
+  execute: PropTypes.func.isRequired,
   onCityChange: PropTypes.func.isRequired
 };
 

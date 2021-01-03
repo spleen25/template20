@@ -1,3 +1,5 @@
 import useDarkTheme from './useDarkTheme';
+import useDataFetcher from './useDataFetcher';
+import useTitle from './useTitle';
 
-export { useDarkTheme };
+export { useDarkTheme, useDataFetcher, useTitle };

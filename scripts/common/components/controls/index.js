@@ -17,6 +17,7 @@ import {
   TextField,
   SvgIcon,
   Paper,
+  CircularProgress,
   Collapse
 } from '@material-ui/core';
 
@@ -48,5 +49,6 @@ export {
   TextField,
   SvgIcon,
   Paper,
+  CircularProgress,
   Collapse
 };
