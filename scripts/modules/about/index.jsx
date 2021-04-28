@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { useTitle } from 'hooks';
+import { Helmet } from 'react-helmet';
 
 import {
   List,
@@ -10,9 +9,11 @@ import {
   ModuleWrapper
 } from 'components/controls';
 
-const AboutPage = () => {
-  useTitle('About');
-  return (
+const AboutPage = () => (
+  <>
+    <Helmet>
+      <title>About | TEMPLATE 20</title>
+    </Helmet>
     <ModuleWrapper>
       <ModuleTitle name="About" />
       <List subheader={<ListSubheader>Pages</ListSubheader>}>
@@ -21,7 +22,7 @@ const AboutPage = () => {
         <ListItemLink to="/expense" primary="My Expense" />
       </List>
     </ModuleWrapper>
-  );
-};
+  </>
+);
 
 export default AboutPage;

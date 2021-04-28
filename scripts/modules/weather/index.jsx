@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { debounce } from 'lodash';
+import { Helmet } from 'react-helmet';
 
 import { useDataFetcher } from 'hooks';
 import {
@@ -40,28 +41,33 @@ const WeatherPage = () => {
   const isLoading = loading || !!error || !data;
 
   return (
-    <ModuleWrapper>
-      <ModuleTitle name="Weather Forecast" />
-      <SearchCity city={city} setCity={debouncedSetCity} execute={execute} />
-      <Collapse in={isDefault}>
-        <Typography variant="body1" gutterBottom>
-          Enter the name of the city
-        </Typography>
-      </Collapse>
-      <Collapse in={isShowContent}>
-        {isLoading ? (
-          <CircularProgress />
-        ) : (
-          <WeatherContent weatherData={data} />
-        )}
-        {error && <ErrorAlert message={error} />}
-      </Collapse>
-      <Collapse in={isEmptyData}>
-        <Typography variant="body1" gutterBottom>
-          Oops, Try again
-        </Typography>
-      </Collapse>
-    </ModuleWrapper>
+    <>
+      <Helmet>
+        <title>Weather Forecast | TEMPLATE 20</title>
+      </Helmet>
+      <ModuleWrapper>
+        <ModuleTitle name="Weather Forecast" />
+        <SearchCity city={city} setCity={debouncedSetCity} execute={execute} />
+        <Collapse in={isDefault}>
+          <Typography variant="body1" gutterBottom>
+            Enter the name of the city
+          </Typography>
+        </Collapse>
+        <Collapse in={isShowContent}>
+          {isLoading ? (
+            <CircularProgress />
+          ) : (
+            <WeatherContent weatherData={data} />
+          )}
+          {error && <ErrorAlert message={error} />}
+        </Collapse>
+        <Collapse in={isEmptyData}>
+          <Typography variant="body1" gutterBottom>
+            Oops, Try again
+          </Typography>
+        </Collapse>
+      </ModuleWrapper>
+    </>
   );
 };
 

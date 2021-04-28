@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { Helmet } from 'react-helmet';
 
 import { useDarkTheme } from 'hooks';
 import Layout from 'components/layout';
@@ -39,23 +40,28 @@ const AppModules = () => {
   const themeConfig = createMuiTheme(theme);
 
   return (
-    <BrowserRouter>
-      <MuiThemeProvider theme={themeConfig}>
-        <CssBaseline>
-          <Layout
-            paletteType={themeConfig.palette.type}
-            onToggleDark={toggleDarkTheme}
-          >
-            <Switch>
-              {routes.map((route, i) => (
-                <Route key={i} {...route} />
-              ))}
-              <Route path="*" render={() => <Redirect to="/about" />} />
-            </Switch>
-          </Layout>
-        </CssBaseline>
-      </MuiThemeProvider>
-    </BrowserRouter>
+    <>
+      <Helmet>
+        <title>TEMPLATE 20</title>
+      </Helmet>
+      <BrowserRouter>
+        <MuiThemeProvider theme={themeConfig}>
+          <CssBaseline>
+            <Layout
+              paletteType={themeConfig.palette.type}
+              onToggleDark={toggleDarkTheme}
+            >
+              <Switch>
+                {routes.map((route, i) => (
+                  <Route key={i} {...route} />
+                ))}
+                <Route path="*" render={() => <Redirect to="/about" />} />
+              </Switch>
+            </Layout>
+          </CssBaseline>
+        </MuiThemeProvider>
+      </BrowserRouter>
+    </>
   );
 };
 
