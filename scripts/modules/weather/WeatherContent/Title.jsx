@@ -4,7 +4,7 @@ import * as PropTypes from 'prop-types';
 import { makeStyles } from 'decorators';
 import { Typography } from 'components/controls';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   location: {
     marginRight: 'auto',
     marginBottom: theme.spacing(3)

@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const useDataFetcher = (isMount = true, getMethod, ...params) => {
   const [data, setData] = useState(null);
@@ -7,13 +7,11 @@ const useDataFetcher = (isMount = true, getMethod, ...params) => {
 
   async function getResource() {
     try {
-      setLoading(true);
       const result = await getMethod(...params);
       setData(result.data);
-    } catch (e) {
-      setError(e);
-    } finally {
       setLoading(false);
+    } catch (e) {
+      setError(e.message);
     }
   }
 

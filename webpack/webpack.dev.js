@@ -12,7 +12,7 @@ module.exports = merge(common, {
     contentBase: paths.build,
     compress: true,
     hot: true,
-    port: 8080
+    port: 5000
   },
   plugins: [new webpack.HotModuleReplacementPlugin()]
 });

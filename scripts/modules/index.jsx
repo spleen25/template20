@@ -2,10 +2,9 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import { useDarkTheme } from 'hooks';
-
 import Layout from 'components/layout';
 import { MuiThemeProvider, createMuiTheme } from 'components/providers';
-import { BrowserRouter, Switch, Route, Redirect } from 'components/router';
+import { BrowserRouter, Redirect, Route, Switch } from 'components/router';
 import { CssBaseline } from 'decorators';
 
 import AboutPage from './about';
