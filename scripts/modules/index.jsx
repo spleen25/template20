@@ -13,8 +13,6 @@ import WeatherPage from './weather';
 import ExpensePage from './expense';
 import TodoList from './todoList';
 
-import '../../styles/index.less';
-
 const routes = [
   {
     path: '/about',
