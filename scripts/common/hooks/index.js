@@ -1,4 +1,4 @@
-import useDarkTheme from './useDarkTheme';
+import useColorMode from './useColorMode';
 import useDataFetcher from './useDataFetcher';
 
-export { useDarkTheme, useDataFetcher };
+export { useColorMode, useDataFetcher };

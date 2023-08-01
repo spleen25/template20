@@ -1,7 +1,6 @@
 import React from 'react';
-import * as PropTypes from 'prop-types';
-import { Alert, AlertTitle } from '@material-ui/lab';
-import { Typography } from '@material-ui/core';
+import PropTypes from 'prop-types';
+import { Alert, AlertTitle, Typography } from '@mui/material';
 
 const ErrorAlert = ({ message }) => {
   return (

@@ -2,24 +2,24 @@ import {
   AppBar,
   Button,
   Card,
+  CircularProgress,
+  Collapse,
   Divider,
   Drawer,
   Grid,
   IconButton,
+  InputAdornment,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
   ListSubheader,
-  Toolbar,
-  InputAdornment,
-  Typography,
-  TextField,
-  SvgIcon,
   Paper,
-  CircularProgress,
-  Collapse
-} from '@material-ui/core';
+  SvgIcon,
+  TextField,
+  Toolbar,
+  Typography
+} from '@mui/material';
 
 import ErrorAlert from './ErrorAlert';
 import ListItemLink from './ListItemLink';

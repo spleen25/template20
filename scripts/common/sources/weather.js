@@ -8,5 +8,4 @@ const getWeather = (query, secret) => {
   );
 };
 
-
 export { getWeather };

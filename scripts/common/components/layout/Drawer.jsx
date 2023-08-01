@@ -1,14 +1,13 @@
 import React from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import { makeStyles } from 'decorators';
-
 import {
   Divider,
-  Drawer as MuiDrawer,
+  IconButton,
   List,
-  IconButton
+  Drawer as MuiDrawer
 } from 'components/controls';
 import { ChevronLeftIcon } from 'components/icons';
 
@@ -16,7 +15,7 @@ import { mainListItems, secondaryListItems } from './listItems';
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     position: 'relative',
     whiteSpace: 'nowrap',

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import {
   Checkbox,
   IconButton,
@@ -9,9 +9,8 @@ import {
   ListItemSecondaryAction,
   ListItemText,
   TextField
-} from '@material-ui/core';
-import CancelIcon from '@material-ui/icons/Cancel';
-import DeleteIcon from '@material-ui/icons/Delete';
+} from '@mui/material';
+import { Cancel, Delete } from '@mui/icons-material';
 
 import { get as getOption } from './options';
 
@@ -123,17 +122,17 @@ function ToDoItem({ onChange, item }) {
       }
       {deleted ? (
         <ListItemSecondaryAction>
-          <DeleteIcon />
+          <Delete />
         </ListItemSecondaryAction>
       ) : (
         <ListItemSecondaryAction
           className={edit ? classes.Visible : classes.Hidden}
         >
           <IconButton onMouseDown={handleDelete} title="Click to delete">
-            <CancelIcon />
+            <Cancel />
           </IconButton>
           <IconButton onMouseDown={handleUndo} title="Click undo">
-            <CancelIcon />
+            <Cancel />
           </IconButton>
         </ListItemSecondaryAction>
       )}

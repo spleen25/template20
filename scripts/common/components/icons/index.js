@@ -2,13 +2,13 @@ import {
   BeachAccess as BeachAccessIcon,
   Brightness4 as Brightness4Icon,
   Brightness7 as Brightness7Icon,
+  ChevronLeft as ChevronLeftIcon,
   FormatListNumbered as FormatListNumberedIcon,
   Home as HomeIcon,
   InsertEmoticon as InsertEmoticonIcon,
-  Search as SearchIcon,
   Menu as MenuIcon,
-  ChevronLeft as ChevronLeftIcon
-} from '@material-ui/icons';
+  Search as SearchIcon
+} from '@mui/icons-material';
 
 export {
   BeachAccessIcon,

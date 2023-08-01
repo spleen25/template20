@@ -1,4 +1,3 @@
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import { CssBaseline } from '@material-ui/core';
+import { makeStyles, withStyles } from '@mui/styles';
 
-export { CssBaseline, withStyles, makeStyles };
+export { withStyles, makeStyles };

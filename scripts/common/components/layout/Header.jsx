@@ -1,14 +1,14 @@
 import React from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import { makeStyles } from 'decorators';
-
-import { Link } from 'react-router-dom';
+import { useColorMode } from 'hooks';
+import { Link } from 'components/router';
+import { styled, useTheme } from 'components/providers';
 import {
+  IconButton,
   AppBar as MuiAppBar,
   Toolbar,
-  IconButton,
   Typography
 } from 'components/controls';
 import {
@@ -18,48 +18,51 @@ import {
   InsertEmoticonIcon,
   MenuIcon
 } from 'components/icons';
+import { makeStyles } from 'decorators';
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   toolbar: {
     paddingRight: 24
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
-    })
   },
   menuButton: {
     marginRight: 36
   },
   menuButtonHidden: {
-    display: 'none'
+    display: 'none!important'
   },
   title: {
     flexGrow: 1
   }
 }));
 
-const Header = ({ open, paletteType, onDrawerOpen, onToggleDark }) => {
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== 'open'
+})(({ theme, open }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  transition: theme.transitions.create(['width', 'margin'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen
+  }),
+  ...(open && {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen
+    })
+  })
+}));
+
+const Header = ({ open, onDrawerOpen }) => {
+  const colorMode = useColorMode();
+
+  const theme = useTheme();
   const classes = useStyles();
 
   return (
-    <MuiAppBar
-      position="absolute"
-      color="primary"
-      className={clsx(classes.appBar, open && classes.appBarShift)}
-    >
+    <AppBar open={open} position="absolute" color="primary">
       <Toolbar className={classes.toolbar}>
         <IconButton
           edge="start"
@@ -80,22 +83,24 @@ const Header = ({ open, paletteType, onDrawerOpen, onToggleDark }) => {
         >
           TEMPLATE 20
         </Typography>
-        <IconButton onClick={onToggleDark}>
-          {paletteType === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
+        <IconButton onClick={colorMode.toggleColorMode}>
+          {theme.palette.mode === 'light' ? (
+            <Brightness4Icon />
+          ) : (
+            <Brightness7Icon />
+          )}
         </IconButton>
         <IconButton component={Link} to="/">
           <HomeIcon />
         </IconButton>
       </Toolbar>
-    </MuiAppBar>
+    </AppBar>
   );
 };
 
 Header.propTypes = {
   open: PropTypes.bool.isRequired,
-  paletteType: PropTypes.string.isRequired,
-  onDrawerOpen: PropTypes.func.isRequired,
-  onToggleDark: PropTypes.func.isRequired
+  onDrawerOpen: PropTypes.func.isRequired
 };
 
 export default Header;

@@ -9,9 +9,10 @@ const useDataFetcher = (isMount = true, getMethod, ...params) => {
     try {
       const result = await getMethod(...params);
       setData(result.data);
-      setLoading(false);
     } catch (e) {
       setError(e.message);
+    } finally {
+      setLoading(false);
     }
   }
 

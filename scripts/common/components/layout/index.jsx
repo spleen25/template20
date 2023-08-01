@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import * as PropTypes from 'prop-types';
-
-import { Container } from '@material-ui/core';
+import { Outlet } from 'react-router-dom';
+import { Container } from '@mui/material';
 
 import { makeStyles } from 'decorators';
 
 import Header from './Header';
 import Drawer from './Drawer';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex'
   },
@@ -24,42 +23,27 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Layout = ({ paletteType, onToggleDark, children }) => {
+const Layout = () => {
   const classes = useStyles();
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
-  const onDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const onDrawerClose = () => {
-    setOpen(false);
+  const onDrawerChange = () => {
+    setOpen(!open);
   };
 
   return (
     <div className={classes.root}>
-      <Header
-        open={open}
-        paletteType={paletteType}
-        onDrawerOpen={onDrawerOpen}
-        onToggleDark={onToggleDark}
-      />
-      <Drawer open={open} onDrawerClose={onDrawerClose} />
+      <Header open={open} onDrawerOpen={onDrawerChange} />
+      <Drawer open={open} onDrawerClose={onDrawerChange} />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          {children}
+          <Outlet />
         </Container>
       </main>
     </div>
   );
 };
 
-Layout.propTypes = {
-  paletteType: PropTypes.string.isRequired,
-  onToggleDark: PropTypes.func.isRequired,
-  children: PropTypes.element
-};
-
-export { Layout as default };
+export default Layout;

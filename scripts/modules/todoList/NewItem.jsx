@@ -1,7 +1,7 @@
 import React, { createRef, useState } from 'react';
-import * as PropTypes from 'prop-types';
-import { IconButton, InputAdornment, TextField } from '@material-ui/core';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
+import PropTypes from 'prop-types';
+import { IconButton, InputAdornment, TextField } from '@mui/material';
+import { AddCircle } from '@mui/icons-material';
 
 const ref = createRef();
 
@@ -42,7 +42,7 @@ const NewItem = ({ onEnter = () => {}, onChange = () => {} }) => {
               disabled={!todo.trim()}
               onClick={handleAddItem}
             >
-              <AddCircleIcon />
+              <AddCircle />
             </IconButton>
           </InputAdornment>
         )

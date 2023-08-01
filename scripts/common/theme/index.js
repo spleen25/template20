@@ -1,11 +1,8 @@
-import { deepPurple, pink } from '@material-ui/core/colors';
+import { deepPurple, pink } from '@mui/material/colors';
 
-const themeDefault = {
+export const themeDefault = {
   palette: {
     primary: pink,
-    secondary: deepPurple,
-    type: String(window.localStorage.getItem('paletteType') || 'dark')
+    secondary: deepPurple
   }
 };
-
-export default themeDefault;

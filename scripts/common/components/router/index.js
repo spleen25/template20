@@ -1,10 +1,3 @@
-import {
-  BrowserRouter,
-  Route,
-  Redirect,
-  NavLink,
-  Switch,
-  Link
-} from 'react-router-dom';
+import { BrowserRouter, Link, NavLink, Route, Routes } from 'react-router-dom';
 
-export { BrowserRouter, Route, Redirect, Link, NavLink, Switch };
+export { BrowserRouter, Route, Routes, Link, NavLink };
