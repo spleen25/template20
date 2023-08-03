@@ -1,8 +1,7 @@
-import React, { useMemo, forwardRef } from 'react';
-import * as PropTypes from 'prop-types';
-
+import React, { forwardRef, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
+import { ListItem, ListItemIcon, ListItemText } from '@mui/material';
 
 const ListItemLink = ({ icon, primary, to }) => {
   const renderLink = useMemo(

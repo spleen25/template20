@@ -1,64 +1,61 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { v1 as uuid } from 'uuid';
 
-import { ModuleTitle, ModuleWrapper } from 'components/controls';
+import NewItem from './NewItem';
+import ToDoList from './ToDoList';
+import { get as getOption } from './options';
 
-import Todo from './Todo';
-import TodoForm from './TodoForm';
+const TodoPage = () => {
+  const [items, setItems] = useState([]);
+  const [filter, setFilter] = useState('');
 
-const TodoListPage = () => {
-  const [todos, setTodos] = useState([
-    {
-      text: 'Забрать письмо о назначении руководителя практики',
-      isCompleted: true
-    },
-    {
-      text: 'Подписать дневник практики',
-      isCompleted: true
-    },
-    {
-      text: 'Подготовить отчет по практике',
-      isCompleted: true
-    },
-    {
-      text: 'Защитить практику',
-      isCompleted: false
-    }
-  ]);
+  useEffect(() => {
+    new Promise((resolve, reject) => {
+      try {
+        resolve(JSON.parse(localStorage.getItem('items')) || []);
+      } catch (err) {
+        reject(err);
+      }
+    })
+      .then((response) => response.filter(({ deleted }) => !deleted))
+      .then((response) => setItems(response));
+  }, []);
 
-  const addTodo = text => {
-    const newTodos = [...todos, { text }];
-    setTodos(newTodos);
+  useEffect(() => {
+    new Promise((resolve, reject) => {
+      try {
+        localStorage.setItem('items', JSON.stringify(items));
+        resolve();
+      } catch (err) {
+        reject(err);
+      }
+    }).then((response) => console.log(response));
+  }, [items, items.length]);
+
+  const onItemCreateClick = (value) => {
+    Promise.resolve({
+      value,
+      time: +new Date(),
+      complete: false,
+      uid: uuid(),
+      deleted: false
+    }).then((item) => setItems([...items, item]));
   };
 
-  const completeTodo = index => {
-    const newTodos = [...todos];
-    newTodos[index].isCompleted = !newTodos[index].isCompleted;
-    setTodos(newTodos);
-  };
+  const handleFilter = (value) => setFilter(value);
 
-  const removeTodo = index => {
-    const newTodos = [...todos];
-    newTodos.splice(index, 1);
-    setTodos(newTodos);
-  };
+  const handleChangeItems = (item) => setItems(item.slice());
 
   return (
-    <ModuleWrapper>
-      <ModuleTitle name="Todo List" />
-      <div className="todo-list">
-        {todos.map((todo, index) => (
-          <Todo
-            key={index}
-            index={index}
-            todo={todo}
-            completeTodo={completeTodo}
-            removeTodo={removeTodo}
-          />
-        ))}
-        <TodoForm addTodo={addTodo} />
-      </div>
-    </ModuleWrapper>
+    <>
+      <NewItem onChange={handleFilter} onEnter={onItemCreateClick} />
+      <ToDoList
+        filter={getOption('filter', (v) => v === 'true') ? filter : ''}
+        items={items}
+        onChange={handleChangeItems}
+      />
+    </>
   );
 };
 
-export default TodoListPage;
+export default TodoPage;

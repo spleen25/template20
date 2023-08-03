@@ -2,28 +2,31 @@ import {
   AppBar,
   Button,
   Card,
+  CircularProgress,
+  Collapse,
   Divider,
   Drawer,
+  Fade,
   Grid,
   IconButton,
+  InputAdornment,
+  LinearProgress,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
   ListSubheader,
-  Toolbar,
-  InputAdornment,
-  Typography,
-  TextField,
-  SvgIcon,
   Paper,
-  Collapse
-} from '@material-ui/core';
+  SvgIcon,
+  TextField,
+  Toolbar,
+  Typography
+} from '@mui/material';
 
 import ErrorAlert from './ErrorAlert';
 import ListItemLink from './ListItemLink';
 import ModuleTitle from './ModuleTitle';
-import ModuleWrapper from './ModuleWrapper';
+import { ModuleWrapper } from './ModuleWrapper';
 
 export {
   AppBar,
@@ -31,9 +34,11 @@ export {
   Card,
   Divider,
   Drawer,
+  Fade,
   ErrorAlert,
   Grid,
   IconButton,
+  LinearProgress,
   List,
   ListItem,
   ListItemIcon,
@@ -48,5 +53,6 @@ export {
   TextField,
   SvgIcon,
   Paper,
+  CircularProgress,
   Collapse
 };

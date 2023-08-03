@@ -1,63 +1,50 @@
-import React from 'react';
-import { render } from 'react-dom';
+import React, { Suspense, lazy } from 'react';
+import { hydrate, render } from 'react-dom';
+import { Helmet } from 'react-helmet';
 
-import { useDarkTheme } from 'hooks';
-
+import { ColorModeProvider } from 'context/colorModeContext';
 import Layout from 'components/layout';
-import { MuiThemeProvider, createMuiTheme } from 'components/providers';
-import { HashRouter, Switch, Route, Redirect } from 'components/router';
-import { CssBaseline } from 'decorators';
+import { CssBaseline } from 'components/providers';
+import { BrowserRouter, Route, Routes } from 'components/router';
+import { CircularProgress } from 'components/controls';
 
-import AboutPage from './about';
-import WeatherPage from './weather';
-import ExpensePage from './expense';
-import TodoList from './todoList';
+const About = lazy(() => import('./about'));
+const Weather = lazy(() => import('./weather'));
+const Expense = lazy(() => import('./expense'));
+const TodoList = lazy(() => import('./todoList'));
+const MoscowDistrictsQuiz = lazy(() => import('./moscowDistrictsQuiz'));
 
-import '../../styles/index.less';
-
-const routes = [
-  {
-    path: '/about',
-    component: AboutPage
-  },
-  {
-    path: '/weather',
-    component: WeatherPage
-  },
-  {
-    path: '/expense',
-    component: ExpensePage
-  },
-  {
-    path: '/todo',
-    component: TodoList
-  }
-];
-
-const AppModules = () => {
-  const [theme, toggleDarkTheme] = useDarkTheme();
-
-  const themeConfig = createMuiTheme(theme);
-
-  return (
-    <HashRouter>
-      <MuiThemeProvider theme={themeConfig}>
+const App = () => (
+  <>
+    <Helmet>
+      <title>TEMPLATE 20</title>
+    </Helmet>
+    <BrowserRouter>
+      <ColorModeProvider>
         <CssBaseline>
-          <Layout
-            paletteType={themeConfig.palette.type}
-            onToggleDark={toggleDarkTheme}
-          >
-            <Switch>
-              {routes.map((route, i) => (
-                <Route key={i} {...route} />
-              ))}
-              <Route path="*" render={() => <Redirect to="/about" />} />
-            </Switch>
-          </Layout>
+          <Suspense fallback={<CircularProgress />}>
+            <Routes>
+              <Route element={<Layout />}>
+                <Route path="/" element={<About />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/weather" element={<Weather />} />
+                <Route path="/expense" element={<Expense />} />
+                <Route path="/todo" element={<TodoList />} />
+                <Route path="/moscow-districts-quiz" element={<MoscowDistrictsQuiz />} />
+                <Route path="*" element={<About />} />
+              </Route>
+            </Routes>
+          </Suspense>
         </CssBaseline>
-      </MuiThemeProvider>
-    </HashRouter>
-  );
-};
+      </ColorModeProvider>
+    </BrowserRouter>
+  </>
+);
 
-render(<AppModules />, document.getElementById('root'));
+const rootNode = document.getElementById('root');
+
+if (rootNode.hasChildNodes()) {
+  hydrate(<App />, rootNode);
+} else {
+  render(<App />, rootNode);
+}

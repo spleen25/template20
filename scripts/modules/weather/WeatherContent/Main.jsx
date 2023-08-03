@@ -1,10 +1,10 @@
 import React from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { makeStyles } from 'decorators';
 import { Grid, Paper, Typography } from 'components/controls';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     display: 'flex',
     justifyContent: 'space-around',
@@ -46,8 +46,14 @@ const WeatherDataMain = ({
 }) => {
   const classes = useStyles();
 
-  const sunsetNew = new Date(sunset * 1000).toLocaleTimeString().slice(0, 5);
-  const sunriseNew = new Date(sunrise * 1000).toLocaleTimeString().slice(0, 5);
+  const sunsetFormatted = new Date(sunset * 1000)
+    .toLocaleTimeString()
+    .slice(0, 5);
+  const sunriseFormatted = new Date(sunrise * 1000)
+    .toLocaleTimeString()
+    .slice(0, 5);
+
+  const pressureFormatted = Math.floor(pressure / 1.333);
 
   const iconUrl = `https://www.weatherbit.io/static/img/icons/${icon}.png`;
 
@@ -64,7 +70,6 @@ const WeatherDataMain = ({
           </div>
         </Paper>
       </Grid>
-
       <Grid container item xs={12} md={8} lg={8}>
         <Paper elevation={3} className={classes.paperMain}>
           <div className={classes.paperItem}>
@@ -75,7 +80,6 @@ const WeatherDataMain = ({
               {probability}%
             </Typography>
           </div>
-
           <div className={classes.paperItem}>
             <Typography variant="h6" noWrap>
               Wind:
@@ -84,25 +88,22 @@ const WeatherDataMain = ({
               {Math.floor(wind)} м/с
             </Typography>
           </div>
-
           <div className={classes.paperItem}>
             <Typography variant="h6" noWrap>
               Sunrise:
             </Typography>
             <Typography variant="h6" className={classes.data}>
-              {sunriseNew}
+              {sunriseFormatted}
             </Typography>
           </div>
-
           <div className={classes.paperItem}>
             <Typography variant="h6" noWrap>
               Pressure:
             </Typography>
             <Typography variant="h6" className={classes.data}>
-              {Math.floor(pressure / 1.333)} мм
+              {pressureFormatted} мм
             </Typography>
           </div>
-
           <div className={classes.paperItem}>
             <Typography variant="h6" noWrap>
               Humidity:
@@ -111,13 +112,12 @@ const WeatherDataMain = ({
               {humidity}%
             </Typography>
           </div>
-
           <div className={classes.paperItem}>
             <Typography variant="h6" noWrap>
               Sunset:
             </Typography>
             <Typography variant="h6" className={classes.data}>
-              {sunsetNew}
+              {sunsetFormatted}
             </Typography>
           </div>
         </Paper>

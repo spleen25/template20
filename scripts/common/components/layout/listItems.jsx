@@ -1,10 +1,8 @@
 import React from 'react';
+import { HourglassEmpty, Note } from '@mui/icons-material';
 
 import { List, ListItemLink, ListSubheader } from 'components/controls';
-
 import { BeachAccessIcon, FormatListNumberedIcon } from 'components/icons';
-import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
-import NoteIcon from '@material-ui/icons/Note';
 
 export const mainListItems = (
   <List>
@@ -17,7 +15,7 @@ export const mainListItems = (
     <ListItemLink
       to="/expense"
       primary="My Expense"
-      icon={<HourglassEmptyIcon />}
+      icon={<HourglassEmpty />}
     />
   </List>
 );
@@ -25,6 +23,6 @@ export const mainListItems = (
 export const secondaryListItems = (
   <List>
     <ListSubheader inset>Additional</ListSubheader>
-    <ListItemLink to="/123" primary="Ideas" icon={<NoteIcon />} />
+    <ListItemLink to="/123" primary="Ideas" icon={<Note />} />
   </List>
 );

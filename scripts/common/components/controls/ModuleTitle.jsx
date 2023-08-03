@@ -1,13 +1,11 @@
 import React from 'react';
-import * as PropTypes from 'prop-types';
-
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { Typography } from '@mui/material';
 
 import { makeStyles } from 'decorators';
 
-import { Typography } from '@material-ui/core';
-
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     marginBottom: theme.spacing(4)
   }

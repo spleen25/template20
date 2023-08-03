@@ -1,3 +1,9 @@
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+import { CssBaseline } from '@mui/material';
+import {
+  ThemeProvider,
+  createTheme,
+  styled,
+  useTheme
+} from '@mui/material/styles';
 
-export { MuiThemeProvider, createMuiTheme };
+export { CssBaseline, ThemeProvider, createTheme, styled, useTheme };

@@ -1,17 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import * as PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import { Container } from '@mui/material';
 
-import { Container } from '@material-ui/core';
-
-import { useRouter } from 'hooks';
 import { makeStyles } from 'decorators';
-
-import { getRouteTitle } from 'utils/router';
 
 import Header from './Header';
 import Drawer from './Drawer';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex'
   },
@@ -27,51 +23,24 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Layout = ({ paletteType, routes, onToggleDark, children }) => {
-  const classes = useStyles();
-
-  const {
-    location: { pathname }
-  } = useRouter();
-
-  useEffect(() => {
-    document.title = getRouteTitle(document.title, pathname, routes);
-  }, [pathname]);
-
+const Layout = () => {
   const [open, setOpen] = useState(false);
 
-  const onDrawerOpen = () => {
-    setOpen(true);
-  };
+  const classes = useStyles();
 
-  const onDrawerClose = () => {
-    setOpen(false);
-  };
-
+  const onDrawerChange = () => setOpen(!open);
   return (
     <div className={classes.root}>
-      <Header
-        open={open}
-        paletteType={paletteType}
-        onDrawerOpen={onDrawerOpen}
-        onToggleDark={onToggleDark}
-      />
-      <Drawer open={open} onDrawerClose={onDrawerClose} />
+      <Header open={open} onDrawerOpen={onDrawerChange} />
+      <Drawer open={open} onDrawerClose={onDrawerChange} />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          {children}
+          <Outlet />
         </Container>
       </main>
     </div>
   );
 };
 
-Layout.propTypes = {
-  paletteType: PropTypes.string.isRequired,
-  routes: PropTypes.array,
-  onToggleDark: PropTypes.func.isRequired,
-  children: PropTypes.element
-};
-
-export { Layout as default };
+export default Layout;

@@ -1,5 +1,4 @@
-import useRouter from 'use-react-router';
+import useColorMode from './useColorMode';
+import useDataFetcher from './useDataFetcher';
 
-import useDarkTheme from './useDarkTheme';
-
-export { useDarkTheme, useRouter };
+export { useColorMode, useDataFetcher };
