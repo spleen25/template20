@@ -1,11 +1,7 @@
 import axios from 'axios';
 
-// const secret = process.env.REACT_APP_WEATHER_API_KEY;
-
-const getWeather = (query, secret) => {
+export const getWeather = (query) => {
   return axios.get(
-    `https://api.weatherbit.io/v2.0/forecast/daily?city=${query}&key=${secret}&days=8`
+    `https://api.weatherbit.io/v2.0/forecast/daily?city=${query}&key=${process.env.REACT_APP_WEATHER_API_KEY}&days=8`
   );
 };
-
-export { getWeather };

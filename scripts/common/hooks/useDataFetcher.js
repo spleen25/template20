@@ -7,12 +7,15 @@ const useDataFetcher = (isMount = true, getMethod, ...params) => {
 
   async function getResource() {
     try {
+      setLoading(true);
       const result = await getMethod(...params);
       setData(result.data);
+      setLoading(false);
     } catch (e) {
       setError(e.message);
-    } finally {
       setLoading(false);
+    } finally {
+      console.log('f');
     }
   }
 
@@ -24,7 +27,7 @@ const useDataFetcher = (isMount = true, getMethod, ...params) => {
     if (isMount) {
       execute();
     }
-  }, [execute, isMount]);
+  }, [isMount]);
 
   return { execute, data, loading, error };
 };

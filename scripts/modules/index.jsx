@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { render } from 'react-dom';
+import { hydrate, render } from 'react-dom';
 import { Helmet } from 'react-helmet';
 
 import { ColorModeProvider } from 'context/colorModeContext';
@@ -8,10 +8,11 @@ import { CssBaseline } from 'components/providers';
 import { BrowserRouter, Route, Routes } from 'components/router';
 import { CircularProgress } from 'components/controls';
 
-const AboutPage = lazy(() => import('./about'));
-const WeatherPage = lazy(() => import('./weather'));
-const ExpensePage = lazy(() => import('./expense'));
+const About = lazy(() => import('./about'));
+const Weather = lazy(() => import('./weather'));
+const Expense = lazy(() => import('./expense'));
 const TodoList = lazy(() => import('./todoList'));
+const MoscowDistrictsQuiz = lazy(() => import('./moscowDistrictsQuiz'));
 
 const App = () => (
   <>
@@ -24,12 +25,13 @@ const App = () => (
           <Suspense fallback={<CircularProgress />}>
             <Routes>
               <Route element={<Layout />}>
-                <Route path="/" element={<AboutPage />} />
-                <Route path="/about" element={<AboutPage />} />
-                <Route path="/weather" element={<WeatherPage />} />
-                <Route path="/expense" element={<ExpensePage />} />
+                <Route path="/" element={<About />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/weather" element={<Weather />} />
+                <Route path="/expense" element={<Expense />} />
                 <Route path="/todo" element={<TodoList />} />
-                <Route path="*" element={<AboutPage />} />
+                <Route path="/moscow-districts-quiz" element={<MoscowDistrictsQuiz />} />
+                <Route path="*" element={<About />} />
               </Route>
             </Routes>
           </Suspense>
@@ -40,4 +42,9 @@ const App = () => (
 );
 
 const rootNode = document.getElementById('root');
-render(<App />, rootNode);
+
+if (rootNode.hasChildNodes()) {
+  hydrate(<App />, rootNode);
+} else {
+  render(<App />, rootNode);
+}

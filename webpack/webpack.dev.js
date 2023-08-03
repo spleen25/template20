@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
+const { DefinePlugin } = require('webpack');
 
 const paths = require('./paths');
 const common = require('./webpack.common.js');
@@ -14,5 +15,10 @@ module.exports = merge(common, {
     hot: true,
     port: 5000
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development')
+    }),
+  ]
 });

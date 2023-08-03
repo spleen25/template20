@@ -2,6 +2,7 @@ const { merge } = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const { DefinePlugin } = require('webpack');
 
 const paths = require('./paths');
 const common = require('./webpack.common.js');
@@ -44,5 +45,10 @@ module.exports = merge(common, {
     maxEntrypointSize: 512000,
     maxAssetSize: 512000
   },
-  plugins: [new CompressionPlugin()]
+  plugins: [
+    new CompressionPlugin(),
+    new DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    })
+  ]
 });

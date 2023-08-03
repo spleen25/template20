@@ -3,29 +3,15 @@ import { debounce } from 'lodash';
 import { Helmet } from 'react-helmet';
 
 import { useDataFetcher } from 'hooks';
-import {
-  CircularProgress,
-  Collapse,
-  ErrorAlert,
-  ModuleTitle,
-  ModuleWrapper,
-  Typography
-} from 'components/controls';
+import { CircularProgress, Collapse, ErrorAlert, ModuleTitle, ModuleWrapper, Typography } from 'components/controls';
 import { getWeather } from 'sources/weather';
 
 import SearchCity from './Search';
 import WeatherContent from './WeatherContent';
 
-const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-
 const WeatherPage = () => {
   const [city, setCity] = useState('');
-  const { execute, data, loading, error } = useDataFetcher(
-    false,
-    getWeather,
-    city,
-    API_KEY
-  );
+  const { execute, data, loading, error } = useDataFetcher(false, getWeather, city);
 
   useEffect(() => {
     if (city) {
@@ -54,11 +40,7 @@ const WeatherPage = () => {
           </Typography>
         </Collapse>
         <Collapse in={isShowContent}>
-          {isLoading ? (
-            <CircularProgress />
-          ) : (
-            <WeatherContent weatherData={data} />
-          )}
+          {isLoading ? <CircularProgress /> : <WeatherContent weatherData={data} />}
           {error && <ErrorAlert message={error} />}
         </Collapse>
         <Collapse in={isEmptyData}>

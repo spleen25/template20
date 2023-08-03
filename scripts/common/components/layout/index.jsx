@@ -24,14 +24,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Layout = () => {
+  const [open, setOpen] = useState(false);
+
   const classes = useStyles();
 
-  const [open, setOpen] = useState(true);
-
-  const onDrawerChange = () => {
-    setOpen(!open);
-  };
-
+  const onDrawerChange = () => setOpen(!open);
   return (
     <div className={classes.root}>
       <Header open={open} onDrawerOpen={onDrawerChange} />
