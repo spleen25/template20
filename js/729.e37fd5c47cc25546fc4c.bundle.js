@@ -1,0 +1,2 @@
+(self.webpackChunktemplate20=self.webpackChunktemplate20||[]).push([[729],{3729:function(e,t,n){"use strict";n.r(t);var a=n(7294),r=n(6393);t.default=function(){return a.createElement(r.KP,null,a.createElement(r.$C,{name:"My Expense"},"My Expense"),a.createElement(r.ZT,{variant:"h1"},"Work In Progress"))}}}]);
+//# sourceMappingURL=729.e37fd5c47cc25546fc4c.bundle.js.map
