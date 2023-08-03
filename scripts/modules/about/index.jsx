@@ -20,6 +20,7 @@ const AboutPage = () => (
         <ListItemLink to="/weather" primary="Weather Forecast" />
         <ListItemLink to="/todo" primary="Todo List" />
         <ListItemLink to="/expense" primary="My Expense" />
+        <ListItemLink to="/moscow-districts-quiz" primary="Moscow Districts Quiz" />
       </List>
     </ModuleWrapper>
   </>
